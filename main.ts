@@ -20,8 +20,8 @@ await Deno.writeTextFile("index.html", `
     <meta charset="utf-8">
     <title>Find Color Scheme - Sublime Text</title>
 
-    <link rel="preload" href="/main.css" as="style" />
-    <link rel="stylesheet" type="text/css" href="/main.css">
+    <link rel="preload" href="main.css" as="style" />
+    <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
     <section class='first_section'>
