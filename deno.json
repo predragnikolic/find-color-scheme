@@ -1,0 +1,15 @@
+{
+    "engines": {
+        "node": "19"
+    },
+    "imports": {
+        "browser-sync": "npm:browser-sync@3.0.3"
+    },
+    "tasks": {
+        "dev:ui": "browser-sync start --server --files \"*\" \"*/**/*\"",
+        "watch:build": "deno -A  --watch=./main.ts ./main.ts",
+        "dev": {
+          "dependencies": ["dev:ui", "watch:build"]
+        },
+    }
+}
