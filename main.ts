@@ -25,6 +25,26 @@ await Deno.writeTextFile("index.html", `
 
     <p class="section_title">All</p>
     <section class="color_schemes_grid">${colorSchemes.map(colorScheme => ColorSchemeCard({colorScheme})).join('')}</section>
+
+    <button onclick="backToTop()" id="scrollToTopBtn" title="Go to top">Back to Top</button>
+    <script>
+        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+        window.onscroll = function() {
+          scrollFunction();
+        };
+        function scrollFunction() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollToTopBtn.style.display = "block";
+          } else {
+            scrollToTopBtn.style.display = "none";
+          }
+        }
+        function backToTop() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+        }
+    </script>
+
     <script type="module" src="script.mjs"></script>
 </body>
 </html>
