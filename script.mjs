@@ -2,7 +2,7 @@ import json from "./data.json" with { type: "json" };
 import {ColorSchemeCard} from './ColorSchemeCard.mjs'
 
 
-function areColorsSimilar(color1, color2, tolerance = 3) {
+function areColorsSimilar(color1, color2, tolerance = 10) {
   function hexToRgb(hexColor) {
     hexColor = hexColor.replace("#", "");
     const r = parseInt(hexColor.substring(0, 2), 16);
