@@ -9,12 +9,10 @@ p, h1 {
 }
 
 .section_title {
-  padding: 1rem 2rem;
+  padding: 3rem;
   font-size: 2rem;
   text-align: left;
   letter-spacing: 2px;
-  position: sticky;
-  top: 0;
   background: linear-gradient(#eee, #fafafa);
 }
 

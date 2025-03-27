@@ -19,7 +19,7 @@ await Deno.writeTextFile("index.html", `
     <section class='first_section'>
         <h1>Find Color Scheme</h1>
         <p>for Sublime Text</p>
-        <input placeholder="bg color #FFFFFF" style="margin-top:4rem">
+        <input placeholder="bg color #FFFFFF" style="margin-top:4rem" maxlength="7" required>
         <section id='results' style="margin: 2rem 0"></section>
     </section>
 
