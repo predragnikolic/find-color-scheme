@@ -5,7 +5,7 @@ const ColorScheme = ({colorScheme}) => {
     const id = encodeURI(colorScheme.replaceAll(' ', '_').toLowerCase())
     return `
     <div class='item'>
-        <img loading='lazy' class="box-shadow" src="/screenshots/${colorScheme}.png">
+        <img loading='lazy' class="box-shadow" src="screenshots/${colorScheme}.png">
         <a class="item_title" id="${id}" href="#${id}">${colorScheme}</a>
     </div>
 `}
