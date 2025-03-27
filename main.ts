@@ -1,14 +1,5 @@
 import colorSchemes from "./color-schemes.json" with { type: "json" };
-
-
-const ColorScheme = ({colorScheme}) => {
-    const id = encodeURI(colorScheme.replaceAll(' ', '_').toLowerCase())
-    return `
-    <div class='item'>
-        <img loading='lazy' class="box-shadow" src="screenshots/${colorScheme}.png">
-        <a class="item_title" id="${id}" href="#${id}">${colorScheme}</a>
-    </div>
-`}
+import {ColorSchemeCard} from './ColorSchemeCard.mjs'
 
 await Deno.writeTextFile("index.html", `
 <!DOCTYPE html>
@@ -24,11 +15,17 @@ await Deno.writeTextFile("index.html", `
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
+
     <section class='first_section'>
         <h1>Find Color Scheme</h1>
         <p>for Sublime Text</p>
+        <input placeholder="bg color #FFFFFF" style="margin-top:4rem">
+        <section id='results' style="margin: 2rem 0"></section>
     </section>
-    <section class="color_schemes_grid">${colorSchemes.map(colorScheme => ColorScheme({colorScheme})).join('')}</section>
+
+    <p class="section_title">All</p>
+    <section class="color_schemes_grid">${colorSchemes.map(colorScheme => ColorSchemeCard({colorScheme})).join('')}</section>
+    <script type="module" src="script.mjs"></script>
 </body>
 </html>
 `)
