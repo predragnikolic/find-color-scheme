@@ -17,7 +17,6 @@ await Deno.writeTextFile("index.html", `
 <body>
 
     <section class='first_section'>
-        <div class="noise-overlay"></div>
         <div style="padding: 2rem">
           <h1>Find Color Scheme</h1>
 

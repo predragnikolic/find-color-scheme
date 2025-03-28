@@ -29,7 +29,11 @@ const hexColorRegex = /^#[0-9A-Fa-f]{6}$/;
 
 input.addEventListener("keyup", function(event) {
     if (event.key === "Enter") {
-      const match = []
+      const exact = []
+      const smallTollerance = []
+      const mediumTollerance = []
+      const highTollerance = []
+
       const inputBgColor = event.target.value
 
       if (!hexColorRegex.test(inputBgColor)) {
@@ -41,13 +45,30 @@ input.addEventListener("keyup", function(event) {
             input.setCustomValidity('');
         }
 
+      let alreadyMatched = []
       for (const [key, value] of Object.entries(json)) {
         const colorSchemeBg = value.color_scheme.palette.background
-        if (areColorsSimilar(inputBgColor, colorSchemeBg)) {
-          match.push(key)
+        if (inputBgColor === colorSchemeBg) {
+          alreadyMatched.push(key)
+          exact.push(key)
+        }
+        if (alreadyMatched.includes(key)) continue
+        if (areColorsSimilar(inputBgColor, colorSchemeBg, 1)) {
+          alreadyMatched.push(key)
+          smallTollerance.push(key)
+        }
+        if (alreadyMatched.includes(key)) continue
+        if (areColorsSimilar(inputBgColor, colorSchemeBg, 3)) {
+          alreadyMatched.push(key)
+          mediumTollerance.push(key)
+        }
+        if (alreadyMatched.includes(key)) continue
+        if (areColorsSimilar(inputBgColor, colorSchemeBg, 10)) {
+          alreadyMatched.push(key)
+          highTollerance.push(key)
         }
       }
-
+      const match = [...exact, ...smallTollerance, ...mediumTollerance, ...highTollerance]
       if (match.length === 0) {
         resultsSection.innerHTML = `
           <p style='text-align: center; margin: 3rem; opacity: 0.3; font-weight:bold'>No results</p>
