@@ -53,6 +53,15 @@ input.addEventListener("keyup", function(event) {
           exact.push(key)
         }
         if (alreadyMatched.includes(key)) continue
+        if (areColorsSimilar(inputBgColor, colorSchemeBg, 10)) {
+          alreadyMatched.push(key)
+          highTollerance.push(key)
+        }
+      }
+
+      for (const key of highTollerance) {
+        const colorSchemeBg = json[key].color_scheme.palette.background
+        if (inputBgColor === colorSchemeBg) continue
         if (areColorsSimilar(inputBgColor, colorSchemeBg, 1)) {
           alreadyMatched.push(key)
           smallTollerance.push(key)
@@ -62,12 +71,8 @@ input.addEventListener("keyup", function(event) {
           alreadyMatched.push(key)
           mediumTollerance.push(key)
         }
-        if (alreadyMatched.includes(key)) continue
-        if (areColorsSimilar(inputBgColor, colorSchemeBg, 10)) {
-          alreadyMatched.push(key)
-          highTollerance.push(key)
-        }
       }
+
       const match = [...exact, ...smallTollerance, ...mediumTollerance, ...highTollerance]
       if (match.length === 0) {
         resultsSection.innerHTML = `
